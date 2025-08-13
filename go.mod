@@ -1,4 +1,4 @@
-module small-go
+module github.com/dawit-go/small-go
 
 go 1.24.4
 
