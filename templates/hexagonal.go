@@ -24,7 +24,7 @@ func (h *HexagonalTemplate) GenerateFiles(projectName string) map[string]string 
 		"initiators/app.go":                                generateAppInitiator(),
 		"initiators/http.go":                               generateHTTPInitiator(projectName),
 		"initiators/persistence.go":                        generatePersistenceInitiator(projectName),
-		"README.md":                                        generateREADME(projectName, "hexagonal"),
+		"README.md":                                        generateHexagonalREADME(projectName),
 	}
 }
 

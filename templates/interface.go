@@ -13,6 +13,7 @@ func GetAvailableTemplates() []Template {
 	return []Template{
 		&HexagonalTemplate{},
 		&CleanTemplate{},
+		&CleanMongoTemplate{},
 	}
 }
 

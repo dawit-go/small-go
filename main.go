@@ -74,29 +74,24 @@ This will generate a complete project scaffold with:
 
 // selectTemplate provides interactive template selection
 func selectTemplate() string {
-	availableTemplates := templates.GetAvailableTemplates()
+	templates := templates.GetAvailableTemplates()
 
-	fmt.Println("Select an architecture template:")
-	fmt.Println()
-	for i, template := range availableTemplates {
-		fmt.Printf("  %d. %s: %s\n", i+1, template.Name(), template.Description())
+	fmt.Println("\nAvailable templates:")
+	for i, template := range templates {
+		fmt.Printf("%d. %s - %s\n", i+1, template.Name(), template.Description())
 	}
-	fmt.Println()
+
+	fmt.Print("\nSelect a template (1-3): ")
 
 	reader := bufio.NewReader(os.Stdin)
-	for {
-		fmt.Print("Enter your choice (1-2): ")
-		choice, _ := reader.ReadString('\n')
-		choice = strings.TrimSpace(choice)
+	input, _ := reader.ReadString('\n')
+	input = strings.TrimSpace(input)
 
-		index, err := strconv.Atoi(choice)
-		if err != nil || index < 1 || index > len(availableTemplates) {
-			fmt.Printf("Please enter a number between 1 and %d\n", len(availableTemplates))
-			continue
-		}
-
-		selectedTemplate := availableTemplates[index-1]
-		fmt.Printf("Selected: %s\n", selectedTemplate.Name())
-		return selectedTemplate.Name()
+	choice, err := strconv.Atoi(input)
+	if err != nil || choice < 1 || choice > len(templates) {
+		fmt.Println("Invalid choice. Using default template (hexagonal).")
+		return "hexagonal"
 	}
+
+	return templates[choice-1].Name()
 }
